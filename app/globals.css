@@ -25,7 +25,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-neutral-default: hsl(0 0% 4%);
+    --background-neutral-default: hsl(0 0% 8%);
     --background-neutral-strong: hsl(0 0% 16%);
     --background-neutral-subtle: hsl(0 0% 12%);
     --background-neutral-faded: hsl(0 0% 8%);
