@@ -1,6 +1,8 @@
 import { Container } from '@/components/container';
 import { profile } from '@/data/profile';
 import { fetchDatabaseContent } from '@/lib/notion';
+import { formatDate } from '@/lib/utils';
+import Link from 'next/link';
 
 export default async function Home() {
   const [projects, articles] = await Promise.all([
