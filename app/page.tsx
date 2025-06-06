@@ -27,6 +27,7 @@ export default async function Home() {
           <a
             key={project.id}
             href={(project.properties.Link as any).url}
+            target="_blank"
             className="flex items-center gap-5"
           >
             <img
