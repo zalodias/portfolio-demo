@@ -1,7 +1,13 @@
 import { Container } from '@/components/container';
 import { profile } from '@/data/profile';
+import { fetchDatabaseContent } from '@/lib/notion';
 
-export default function Home() {
+export default async function Home() {
+  const [projects, articles] = await Promise.all([
+    fetchDatabaseContent(process.env.NOTION_PROJECTS_DATABASE_ID!),
+    fetchDatabaseContent(process.env.NOTION_ARTICLES_DATABASE_ID!),
+  ]);
+
   return (
     <Container className="max-w-(--breakpoint-md) gap-20 py-20">
       <section className="flex flex-col gap-5">
