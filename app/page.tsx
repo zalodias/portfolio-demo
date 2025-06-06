@@ -7,7 +7,15 @@ import Link from 'next/link';
 export default async function Home() {
   const [projects, articles] = await Promise.all([
     fetchDatabaseContent(process.env.NOTION_PROJECTS_DATABASE_ID!),
-    fetchDatabaseContent(process.env.NOTION_ARTICLES_DATABASE_ID!),
+    fetchDatabaseContent(process.env.NOTION_ARTICLES_DATABASE_ID!, {
+      sorts: [
+        {
+          property: 'Date',
+          direction: 'descending',
+        },
+      ],
+    }),
+    ,
   ]);
 
   return (
