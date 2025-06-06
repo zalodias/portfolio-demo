@@ -5,12 +5,26 @@ export const notion = new Client({
   auth: process.env.NOTION_API_KEY,
 });
 
+interface SortConfig {
+  property: string;
+  direction: 'ascending' | 'descending';
+}
+
 function isPageObjectResponse(response: any): response is PageObjectResponse {
   return !!response.properties;
 }
 
-export async function fetchDatabaseContent(id: string) {
-  const data = await notion.databases.query({ database_id: id });
+export async function fetchDatabaseContent(
+  id: string,
+  options?: { sorts: SortConfig[] },
+) {
+  const data = await notion.databases.query({
+    database_id: id,
+    sorts: options?.sorts?.map((sort) => ({
+      property: sort.property,
+      direction: sort.direction,
+    })),
+  });
 
   return data.results.filter(isPageObjectResponse);
 }
