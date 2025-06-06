@@ -32,6 +32,10 @@ export async function fetchDatabaseContent(
 export async function fetchPageContent(id: string) {
   const data = await notion.pages.retrieve({ page_id: id });
 
+  if (!isPageObjectResponse(data)) {
+    throw new Error('Data is not a valid PageObjectResponse');
+  }
+
   return data;
 }
 
