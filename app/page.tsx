@@ -74,7 +74,11 @@ export default async function Home() {
           Articles
         </h3>
         {articles.map((article) => (
-          <Link key={article.id} href={article.id} className="grid gap-1">
+          <Link
+            key={article.id}
+            href={`/articles/${article.id}`}
+            className="grid gap-1"
+          >
             <h4 className="font-medium">
               {(article.properties.Name as any).title[0].plain_text}
             </h4>
