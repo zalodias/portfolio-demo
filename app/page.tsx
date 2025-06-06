@@ -75,6 +75,7 @@ export default async function Home() {
             </p>
             <span className="text-foreground-neutral-faded text-body-small font-mono font-medium uppercase">
               {formatDate((article.properties.Date as any).date.start, {
+                year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
