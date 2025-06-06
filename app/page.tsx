@@ -18,10 +18,66 @@ export default async function Home() {
         <p className="text-foreground-neutral-subtle">{profile.description}</p>
       </section>
       <section className="flex flex-col gap-5">
-        <h3>Projects</h3>
+        <h3 className="text-body-medium text-foreground-neutral-faded font-medium">
+          Projects
+        </h3>
+        {projects.map((project) => (
+          <a
+            key={project.id}
+            href={(project.properties.Link as any).url}
+            className="flex items-center gap-5"
+          >
+            <img
+              src="https://picsum.photos/400/300"
+              alt="Project Image"
+              className="aspect-[4/3] w-20 rounded-md"
+            />
+            <div className="grid gap-1">
+              <h4 className="font-medium">
+                {(project.properties.Name as any).title[0].plain_text}
+              </h4>
+              <p className="text-foreground-neutral-subtle">
+                {
+                  (project.properties.Description as any).rich_text[0]
+                    .plain_text
+                }
+              </p>
+              <ul className="flex gap-2">
+                {(project.properties.Tags as any).multi_select.map(
+                  (tag: { id: string; name: string }) => (
+                    <li
+                      key={tag.id}
+                      className="text-foreground-neutral-faded text-body-small font-mono font-medium uppercase"
+                    >
+                      {tag.name}
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+          </a>
+        ))}
       </section>
       <section className="flex flex-col gap-5">
-        <h3>Articles</h3>
+        <h3 className="text-body-medium text-foreground-neutral-faded font-medium">
+          Articles
+        </h3>
+        {articles.map((article) => (
+          <Link key={article.id} href={article.id} className="grid gap-1">
+            <h4 className="font-medium">
+              {(article.properties.Name as any).title[0].plain_text}
+            </h4>
+            <p className="text-foreground-neutral-subtle">
+              {(article.properties.Summary as any).rich_text[0].plain_text}
+            </p>
+            <span className="text-foreground-neutral-faded text-body-small font-mono font-medium uppercase">
+              {formatDate((article.properties.Date as any).date.start, {
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
+          </Link>
+        ))}
       </section>
     </Container>
   );
