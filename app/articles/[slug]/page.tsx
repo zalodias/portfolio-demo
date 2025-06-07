@@ -10,13 +10,15 @@ import { formatDate } from '@/lib/utils';
 export default async function Article({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const database = await fetchDatabaseContent(
     process.env.NOTION_ARTICLES_DATABASE_ID!,
   );
 
-  const article = database.find((article) => article.id === params.slug);
+  const { slug } = await params;
+
+  const article = database.find((article) => article.id === slug);
 
   const page = await fetchPageContent(article?.id!);
   const blocks = await fetchBlockContent(page.id);
