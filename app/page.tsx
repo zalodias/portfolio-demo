@@ -39,7 +39,7 @@ export default async function Home() {
             className="flex items-center gap-5"
           >
             <img
-              src="https://picsum.photos/400/300"
+              src={`https://picsum.photos/seed/${project.id}/400/300`}
               alt="Project Image"
               className="aspect-[4/3] w-20 rounded-md"
             />
