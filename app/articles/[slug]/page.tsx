@@ -1,5 +1,10 @@
 import { Container } from '@/components/container';
-import { fetchDatabaseContent, fetchPageContent } from '@/lib/notion';
+import { NotionBlock } from '@/components/notion-block';
+import {
+  fetchBlockContent,
+  fetchDatabaseContent,
+  fetchPageContent,
+} from '@/lib/notion';
 
 export default async function Article({
   params,
@@ -13,6 +18,7 @@ export default async function Article({
   const article = database.find((article) => article.id === params.slug);
 
   const page = await fetchPageContent(article?.id!);
+  const blocks = await fetchBlockContent(page.id);
 
   return (
     <Container className="max-w-(--breakpoint-md) gap-20 py-20">
@@ -24,6 +30,11 @@ export default async function Article({
           {(page.properties.Summary as any).rich_text[0].plain_text}
         </p>
       </header>
+      <article className="flex flex-col gap-2">
+        {blocks.map((block: any) => (
+          <NotionBlock key={block.id} block={block} />
+        ))}
+      </article>
     </Container>
   );
 }
