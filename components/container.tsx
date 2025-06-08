@@ -8,10 +8,7 @@ interface ContainerProps {
 export function Container({ children, className }: ContainerProps) {
   return (
     <main
-      className={cn(
-        'mx-auto grid max-w-(--breakpoint-lg) px-5 md:px-10',
-        className,
-      )}
+      className={cn('mx-auto grid max-w-(--breakpoint-lg) px-8', className)}
     >
       {children}
     </main>
