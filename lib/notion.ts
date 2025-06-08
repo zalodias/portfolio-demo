@@ -10,13 +10,20 @@ interface SortConfig {
   direction: 'ascending' | 'descending';
 }
 
+interface FilterConfig {
+  property: string;
+  status: {
+    equals: string;
+  };
+}
+
 function isPageObjectResponse(response: any): response is PageObjectResponse {
   return !!response.properties;
 }
 
 export async function fetchDatabaseContent(
   id: string,
-  options?: { sorts: SortConfig[] },
+  options?: { sorts: SortConfig[]; filter: FilterConfig },
 ) {
   const data = await notion.databases.query({
     database_id: id,
@@ -24,6 +31,10 @@ export async function fetchDatabaseContent(
       property: sort.property,
       direction: sort.direction,
     })),
+    filter: options?.filter && {
+      property: options.filter.property,
+      status: options.filter.status,
+    },
   });
 
   return data.results.filter(isPageObjectResponse);

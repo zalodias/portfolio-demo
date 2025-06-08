@@ -14,8 +14,13 @@ export default async function Home() {
           direction: 'descending',
         },
       ],
+      filter: {
+        property: 'Status',
+        status: {
+          equals: 'Live',
+        },
+      },
     }),
-    ,
   ]);
 
   return (
