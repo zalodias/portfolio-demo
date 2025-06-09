@@ -14,7 +14,7 @@ export function RichText({
       strikethrough ? 'line-through' : null,
       underline ? 'underline' : null,
       code
-        ? 'font-mono text-body-medium-default text-foreground-brand-default bg-background-neutral-faded px-2 py-1 rounded-md'
+        ? 'font-mono text-body-medium bg-background-neutral-subtle px-2 py-1 rounded-md'
         : null,
     ]
       .filter(Boolean)
