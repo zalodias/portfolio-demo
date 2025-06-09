@@ -5,8 +5,8 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: 'Gonçalo Dias',
-  title: 'Software Designer',
+  name: 'Rowan Loop',
+  title: 'Div Alignment Specialist',
   description:
-    'Blending design intuition with technical precision to build polished digital experiences. I care deeply about usability, performance, and clarity — and I‘m always chasing that sweet spot where form meets function.',
+    'Knows twelve ways to center a div and none to center himself. Thinks semicolons are optional but feelings aren’t. Once built a dark mode so good it filed a restraining order against light mode. Available for freelance work and unsolicited opinions.',
 };
