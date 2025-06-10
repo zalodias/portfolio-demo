@@ -44,9 +44,9 @@ export default async function Home() {
             className="flex items-center gap-5"
           >
             <img
-              src={`https://picsum.photos/seed/${project.id}/400/300`}
-              alt="Project Image"
-              className="aspect-[4/3] w-20 rounded-md"
+              src={(project.properties.Image as any).files[0].file.url}
+              alt={(project.properties.Name as any).title[0].plain_text}
+              className="bg-background-neutral-subtle aspect-[4/3] w-20 rounded-md object-cover"
             />
             <div className="grid gap-1">
               <h4 className="font-medium">
