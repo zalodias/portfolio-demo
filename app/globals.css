@@ -64,6 +64,9 @@ body {
   --color-foreground-neutral-faded: var(--foreground-neutral-faded);
   --color-foreground-neutral-inverse: var(--foreground-neutral-inverse);
   --color-border-neutral-default: var(--border-neutral-default);
+  --color-border-neutral-strong: var(--border-neutral-strong);
+  --color-border-neutral-subtle: var(--border-neutral-subtle);
+  --color-border-neutral-faded: var(--border-neutral-faded);
 
   --font-*: initial;
   --font-sans: var(--font-geist-sans);
