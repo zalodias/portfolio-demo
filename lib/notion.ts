@@ -1,69 +1,18 @@
-import { Client } from '@notionhq/client';
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+// Initialize Notion Client
 
-export const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
-
-interface SortConfig {
-  property: string;
-  direction: 'ascending' | 'descending';
+export async function fetchDatabaseContent() {
+  // Fetch database content from Notion
+  // Add sorts & filter options
+  // Filter results for PageObjectResponse
 }
 
-interface FilterConfig {
-  property: string;
-  status: {
-    equals: string;
-  };
+export async function fetchPageContent() {
+  // Fetch page content from Notion
+  // Check if data is a valid PageObjectResponse
+  // Return data
 }
 
-function isPageObjectResponse(response: any): response is PageObjectResponse {
-  return !!response.properties;
-}
-
-export async function fetchDatabaseContent(
-  id: string,
-  options?: { sorts: SortConfig[]; filter: FilterConfig },
-) {
-  const data = await notion.databases.query({
-    database_id: id,
-    sorts: options?.sorts?.map((sort) => ({
-      property: sort.property,
-      direction: sort.direction,
-    })),
-    filter: options?.filter && {
-      property: options.filter.property,
-      status: options.filter.status,
-    },
-  });
-
-  return data.results.filter(isPageObjectResponse);
-}
-
-export async function fetchPageContent(id: string) {
-  const data = await notion.pages.retrieve({ page_id: id });
-
-  if (!isPageObjectResponse(data)) {
-    throw new Error('Data is not a valid PageObjectResponse');
-  }
-
-  return data;
-}
-
-export async function fetchBlockContent(id: string) {
-  const { results } = await notion.blocks.children.list({
-    block_id: id,
-  });
-
-  const blocks: any[] = await Promise.all(
-    results.map(async (block: any) => {
-      if (block.has_children) {
-        const children = await fetchBlockContent(block.id);
-        return { ...block, children };
-      }
-      return block;
-    }),
-  );
-
-  return blocks;
+export async function fetchBlockContent() {
+  // Fetch block content from Notion
+  // Return data
 }
