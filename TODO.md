@@ -1,0 +1,16 @@
+- [ ] Create Notion integration
+- [ ] Connect to integration in Notion
+- [ ] Create `.env.local` to store `NOTION_API_KEY` and `NOTION_DATABASE_ID`
+- [ ] Install `@notionhq/client`
+- [ ] Create Notion client (auth)
+- [ ] Implement functions to fetch content from Notion
+- [ ] Fetch projects on Home page
+- [ ] Fetch articles on Home page
+  - [ ] Sort articles by date
+  - [ ] Filter articles by “Live” status
+- [ ] Create slug routes for articles
+- [ ] Fetch individual article by ID
+- [ ] Fetch page properties (name + summary + date)
+- [ ] Fetch page content (introduce NotionBlock)
+- [ ] Showcase NotionBlock + RichText components
+- [ ] Add global site ISR
