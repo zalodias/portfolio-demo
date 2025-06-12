@@ -51,19 +51,9 @@ export async function fetchPageContent(id: string) {
 }
 
 export async function fetchBlockContent(id: string) {
-  const { results } = await notion.blocks.children.list({
+  const data = await notion.blocks.children.list({
     block_id: id,
   });
 
-  const blocks: any[] = await Promise.all(
-    results.map(async (block: any) => {
-      if (block.has_children) {
-        const children = await fetchBlockContent(block.id);
-        return { ...block, children };
-      }
-      return block;
-    }),
-  );
-
-  return blocks;
+  return data.results;
 }
